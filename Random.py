@@ -53,6 +53,23 @@ class Random:
             return 1
         else:
             return 0
+        
+    # function returns a random integer (1, 2, 3, 4) according to a Catagorical distr. (4-sided dice)
+    def Foursided(self, p=0.25, q=0.50, s=0.75):
+        if s < 0. or s > 1.:
+            return 1
+
+        R=self.rand()
+
+        if R < p:
+            return 1
+        if R > p and R < q:
+            return 2
+        if R > q and R < s:
+            return 3
+        else:
+            return 4
+        
 
     # function returns a random double (0 to infty) according to an exponential distribution
     def Exponential(self, beta=1.):
@@ -60,7 +77,7 @@ class Random:
       if beta <= 0.:
         beta = 1.
 
-      R = self.rand();
+      R = self.rand()
 
       while R <= 0.:
         R = self.rand()
