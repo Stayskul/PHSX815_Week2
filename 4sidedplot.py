@@ -15,7 +15,7 @@ for i in range(0, len(myArray)):
 
 #makes plot of numbers from my array
 
-n, bins, patches = plt.hist(myArray, 4, density=True, facecolor='r', alpha=0.75)
+n, bins, patches = plt.hist(myArray, 8, density=True, facecolor='r', alpha=0.75)
 
 plt.xlabel('Random #s')
 plt.ylabel('Probability')
