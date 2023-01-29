@@ -1,5 +1,3 @@
-#! /usr/bin/env python
-
 # imports of external packages to use in our code
 import sys
 import math
@@ -8,7 +6,7 @@ import matplotlib.pyplot as plt
 
 # import our Random class from python/Random.py file
 sys.path.append(".")
-from python.MySort import MySort
+from sorting.MySort import MySort
 
 # main function for our CookieAnalysis Python code
 if __name__ == "__main__":
@@ -56,9 +54,33 @@ if __name__ == "__main__":
 
     times = Sorter.DefaultSort(times)
     times_avg = Sorter.DefaultSort(times_avg)
-    # try some other methods! see how long they take
-    # times_avg = Sorter.BubbleSort(times_avg)
-    # times_avg = Sorter.InsertionSort(times_avg)
-    # times_avg = Sorter.QuickSort(times_avg)
 
-    # ADD YOUR CODE TO PLOT times AND times_avg HERE
+    quartiles = [25, 50, 75, 90]
+    quarperc = ['25%','50%','75%','90%']
+    quarlocate = np.percentile(times, quartiles)
+
+    #prints out the values of the quartiles
+    print(quarlocate)
+
+     # creates a histogram of our sorted data with red lines displaying the quantiles 
+    n, bins, patches = plt.hist(times, 100, density=True, facecolor='green', edgecolor= 'black', alpha=0.75)
+    
+    plt.xlabel('Random #s')
+    plt.ylabel('Probability')
+    plt.title('Random Numbers')
+    plt.grid(True)
+
+    #labels for the quartiles
+    plt.text(quarlocate[0],0.80, quarperc[0], color='black')
+    plt.text(quarlocate[1],0.70, quarperc[1], color='black')
+    plt.text(quarlocate[2],0.60, quarperc[2], color='black')
+    plt.text(quarlocate[3],0.50, quarperc[3], color='black')
+    
+    #quartile lines
+    for q in quarlocate:
+        plt.axvline(q ,color='red')
+        plt.text(q, -.10, round(q, 2), color='black', rotation= 90)
+            
+
+    plt.show()
+
